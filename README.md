@@ -1,4 +1,13 @@
-# React + TypeScript + Vite
+# CV App - React + TypeScript + Vite
+
+Une application moderne de création de CV avec React, TypeScript et Vite.
+
+## 🚀 Fonctionnalités
+
+- Création de CV interactifs
+- Tests unitaires complets (Vitest)
+- CI/CD avec GitHub Actions
+- Branche dev pour développement rapide
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

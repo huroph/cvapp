@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, PlusIcon } from '@heroicons/react/24/outline';
 import { useCV } from '../../contexts/CVContext';
+import CustomDropdown from '../ui/CustomDropdown';
 
 interface Skill {
   id: string;
@@ -136,32 +137,34 @@ export default function AddSkillModal({ isOpen, onClose, skills, onSave }: AddSk
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Catégorie
                     </label>
-                    <select
+                    <CustomDropdown
                       value={newSkill.category}
-                      onChange={(e) => setNewSkill(prev => ({ ...prev, category: e.target.value as Skill['category'] }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                      <option value="design">Design</option>
-                      <option value="development">Développement</option>
-                      <option value="marketing">Marketing</option>
-                      <option value="other">Autre</option>
-                    </select>
+                      onChange={(value) => setNewSkill(prev => ({ ...prev, category: value as Skill['category'] }))}
+                      options={[
+                        { value: 'design', label: 'Design' },
+                        { value: 'development', label: 'Développement' },
+                        { value: 'marketing', label: 'Marketing' },
+                        { value: 'other', label: 'Autre' }
+                      ]}
+                      placeholder="Sélectionner une catégorie"
+                    />
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Niveau
                     </label>
-                    <select
+                    <CustomDropdown
                       value={newSkill.level}
-                      onChange={(e) => setNewSkill(prev => ({ ...prev, level: e.target.value as Skill['level'] }))}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                      <option value="beginner">Débutant</option>
-                      <option value="intermediate">Intermédiaire</option>
-                      <option value="advanced">Avancé</option>
-                      <option value="expert">Expert</option>
-                    </select>
+                      onChange={(value) => setNewSkill(prev => ({ ...prev, level: value as Skill['level'] }))}
+                      options={[
+                        { value: 'beginner', label: 'Débutant' },
+                        { value: 'intermediate', label: 'Intermédiaire' },
+                        { value: 'advanced', label: 'Avancé' },
+                        { value: 'expert', label: 'Expert' }
+                      ]}
+                      placeholder="Sélectionner un niveau"
+                    />
                   </div>
                 </div>
 
