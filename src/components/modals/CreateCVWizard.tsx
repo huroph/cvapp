@@ -409,7 +409,7 @@ export default function CreateCVWizard({ isOpen, onClose, onSave }: CreateCVWiza
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-white/50 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
         </Transition.Child>
 
         <div className="fixed inset-0 flex items-center justify-center p-4">
