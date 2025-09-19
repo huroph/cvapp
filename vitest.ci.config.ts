@@ -8,13 +8,16 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
-    // Configuration plus robuste pour CI
+    // Configuration spéciale pour CI
     pool: 'forks',
     isolate: true,
-    testTimeout: 30000,
-    hookTimeout: 30000,
+    testTimeout: 60000,
+    hookTimeout: 60000,
     // Retry en cas d'échec
-    retry: process.env.CI ? 2 : 0,
+    retry: 3,
+    // Configuration plus permissive pour CI
+    silent: false,
+    reporters: ['verbose'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],

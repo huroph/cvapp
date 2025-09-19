@@ -2,6 +2,87 @@ import '@testing-library/jest-dom'
 import { cleanup } from '@testing-library/react'
 import { afterEach, vi, beforeAll, afterAll } from 'vitest'
 
+// Polyfills robustes pour jsdom et animations
+if (typeof Element !== 'undefined') {
+  Element.prototype.getAnimations = Element.prototype.getAnimations || (() => [])
+}
+
+// Polyfills pour jsdom et GitHub Actions
+global.Headers = global.Headers || class Headers {
+  private headers: Record<string, string> = {}
+  
+  constructor(init?: HeadersInit) {
+    if (init) {
+      if (Array.isArray(init)) {
+        init.forEach(([key, value]) => this.headers[key.toLowerCase()] = value)
+      } else if (init instanceof Headers) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (init as any).forEach((value: string, key: string) => {
+          this.headers[key.toLowerCase()] = value
+        })
+      } else {
+        Object.entries(init).forEach(([key, value]) => {
+          this.headers[key.toLowerCase()] = value
+        })
+      }
+    }
+  }
+  
+  append(name: string, value: string) {
+    this.headers[name.toLowerCase()] = value
+  }
+  
+  delete(name: string) {
+    delete this.headers[name.toLowerCase()]
+  }
+  
+  get(name: string) {
+    return this.headers[name.toLowerCase()] || null
+  }
+  
+  has(name: string) {
+    return name.toLowerCase() in this.headers
+  }
+  
+  set(name: string, value: string) {
+    this.headers[name.toLowerCase()] = value
+  }
+  
+  forEach(callback: (value: string, key: string) => void) {
+    Object.entries(this.headers).forEach(([key, value]) => callback(value, key))
+  }
+}
+
+// Polyfill pour Request/Response si nécessaire
+if (!global.Request) {
+  global.Request = class Request {
+    url: string
+    init?: RequestInit
+    headers = new Headers()
+    
+    constructor(url: string, init?: RequestInit) {
+      this.url = url
+      this.init = init
+    }
+  } as any
+}
+
+if (!global.Response) {
+  global.Response = class Response {
+    body?: BodyInit
+    init?: ResponseInit
+    headers = new Headers()
+    ok = true
+    status = 200
+    statusText = 'OK'
+    
+    constructor(body?: BodyInit, init?: ResponseInit) {
+      this.body = body
+      this.init = init
+    }
+  } as any
+}
+
 // Nettoyer après chaque test
 afterEach(() => {
   cleanup()

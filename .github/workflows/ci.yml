@@ -25,11 +25,24 @@ jobs:
     - name: Installer les dépendances
       run: npm ci
 
+    - name: Vérifier l'environnement
+      run: |
+        node --version
+        npm --version
+        npx vitest --version
+
     - name: Lancer les tests
-      run: npm test -- --run
+      run: npm run test:ci
+      env:
+        CI: true
+        NODE_ENV: test
+        NODE_OPTIONS: "--max-old-space-size=4096"
 
     - name: Générer le rapport de couverture
       run: npm run test:coverage
+      env:
+        CI: true
+        NODE_ENV: test
 
     - name: Upload coverage to Codecov (optionnel)
       uses: codecov/codecov-action@v3
