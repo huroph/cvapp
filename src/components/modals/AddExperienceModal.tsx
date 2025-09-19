@@ -147,7 +147,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                       value={newExperience.position}
                       onChange={(e) => setNewExperience(prev => ({ ...prev, position: e.target.value }))}
                       placeholder="Ex: Développeur Full-Stack, Chef de projet..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
 
@@ -160,7 +160,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                       value={newExperience.company}
                       onChange={(e) => setNewExperience(prev => ({ ...prev, company: e.target.value }))}
                       placeholder="Ex: Google, Microsoft, Start-up..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
 
@@ -173,7 +173,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                       value={newExperience.location}
                       onChange={(e) => setNewExperience(prev => ({ ...prev, location: e.target.value }))}
                       placeholder="Ex: Paris, Remote..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
 
@@ -186,7 +186,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                       value={newExperience.period}
                       onChange={(e) => setNewExperience(prev => ({ ...prev, period: e.target.value }))}
                       placeholder="Ex: Jan 2023 - Présent"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
 
@@ -199,7 +199,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                       onChange={(e) => setNewExperience(prev => ({ ...prev, description: e.target.value }))}
                       placeholder="Décrivez vos missions et réalisations..."
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                 <div className="mt-6 flex justify-end gap-3">
                   <button
                     onClick={handleClose}
-                    className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    className="px-4 py-2 bg-gray-500 text-black rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                     disabled={isLoading}
                   >
                     Annuler
@@ -215,7 +215,7 @@ export default function AddExperienceModal({ isOpen, onClose, experiences, onSav
                   <button
                     onClick={addExperience}
                     disabled={!isFormValid || isLoading}
-                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 px-4 py-2 btn-custom text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? (
                       <>

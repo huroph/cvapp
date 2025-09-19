@@ -129,7 +129,7 @@ export default function AddSkillModal({ isOpen, onClose, skills, onSave }: AddSk
                       value={newSkill.name}
                       onChange={(e) => setNewSkill(prev => ({ ...prev, name: e.target.value }))}
                       placeholder="Ex: React, Photoshop, SEO..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
 
