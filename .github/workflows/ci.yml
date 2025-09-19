@@ -23,7 +23,9 @@ jobs:
         cache: 'npm'
 
     - name: Installer les dépendances
-      run: npm ci
+      run: |
+        npm ci
+        npm install --save-dev happy-dom
 
     - name: Vérifier l'environnement
       run: |
