@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/24/outline';
-import { Listbox, Transition } from '@headlessui/react';
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption, Transition } from '@headlessui/react';
 
 interface DropdownOption {
   value: string;
@@ -27,7 +27,10 @@ export default function CustomDropdown({
   return (
     <Listbox value={value} onChange={onChange}>
       <div className="relative">
-        <Listbox.Button className={`relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 ${className}`}>
+        <ListboxButton 
+          className={`relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left  hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-900 ${className}`}
+          style={{ border: '1px solid #d1d5db' }}
+        >
           <span className="block truncate">
             {selectedOption ? selectedOption.label : placeholder}
           </span>
@@ -37,16 +40,16 @@ export default function CustomDropdown({
               aria-hidden="true"
             />
           </span>
-        </Listbox.Button>
+        </ListboxButton>
         <Transition
           as={Fragment}
           leave="transition ease-in duration-100"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
+          <ListboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
             {options.map((option) => (
-              <Listbox.Option
+              <ListboxOption
                 key={option.value}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-10 pr-4 ${
@@ -71,9 +74,9 @@ export default function CustomDropdown({
                     ) : null}
                   </>
                 )}
-              </Listbox.Option>
+              </ListboxOption>
             ))}
-          </Listbox.Options>
+          </ListboxOptions>
         </Transition>
       </div>
     </Listbox>
