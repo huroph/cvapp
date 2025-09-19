@@ -39,12 +39,14 @@ export default function Login() {
     }
   };
 
-  const fillDemoData = () => {
-    setFormData({
-      email: 'alexandre.dupont@exemple.com',
-      password: 'demo123'
-    });
-  };
+
+  // TODO session admin
+  // const fillDemoData = () => {
+  //   setFormData({
+  //     email: 'alexandre.dupont@exemple.com',
+  //     password: 'demo123'
+  //   });
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">

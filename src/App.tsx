@@ -114,27 +114,7 @@ function AppContent() {
 }
 
 function App() {
-  // DÉSACTIVÉ: Initialisation automatique des données de démonstration
-  // Cette fonctionnalité était active pendant le développement
-  // Pour réactiver en mode dev, décommentez le useEffect ci-dessous
-  
-  /*
-  useEffect(() => {
-    const initializeData = async () => {
-      try {
-        await seedDatabase();
-      } catch (error) {
-        console.error('Erreur lors de l\'initialisation des données:', error);
-      }
-    };
-    
-    // Uniquement en mode développement
-    if (import.meta.env.DEV) {
-      initializeData();
-    }
-  }, []);
-  */
-
+ 
   return (
     <AuthProvider>
       <Router>
