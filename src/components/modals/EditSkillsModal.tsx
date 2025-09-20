@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, PencilIcon, CheckIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useCV } from '../../contexts/CVContext';
+import DeleteModal from '../common/DeleteModal';
 
 interface Skill {
   id: string;
@@ -243,37 +244,19 @@ export default function EditSkillsModal({ isOpen, onClose, skills, onSave }: Edi
                 <div className="mt-6 flex justify-end">
                   <button
                     onClick={handleClose}
-                    className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    className="px-4 py-2 bg-gray-500 text-gray-600 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   >
                     Fermer
                   </button>
                 </div>
 
                 {/* Modal de confirmation de suppression */}
-                {deletingId && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60">
-                    <div className="bg-white p-6 rounded-lg shadow-xl">
-                      <h3 className="text-lg font-medium mb-4">Confirmer la suppression</h3>
-                      <p className="text-gray-600 mb-6">
-                        Êtes-vous sûr de vouloir supprimer cette compétence ?
-                      </p>
-                      <div className="flex gap-3 justify-end">
-                        <button
-                          onClick={() => setDeletingId(null)}
-                          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                        >
-                          Annuler
-                        </button>
-                        <button
-                          onClick={() => deleteSkill(deletingId)}
-                          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                        >
-                          Supprimer
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <DeleteModal
+                  isOpen={!!deletingId}
+                  onClose={() => setDeletingId(null)}
+                  onConfirm={() => deleteSkill(deletingId!)}
+                  message="Êtes-vous sûr de vouloir supprimer cette compétence ?"
+                />
               </Dialog.Panel>
             </Transition.Child>
           </div>

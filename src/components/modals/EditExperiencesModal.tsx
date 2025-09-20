@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, PencilIcon, CheckIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useCV } from '../../contexts/CVContext';
+import DeleteModal from '../common/DeleteModal';
 
 interface Experience {
   id: string;
@@ -245,30 +246,12 @@ export default function EditExperiencesModal({ isOpen, onClose, experiences, onS
                 </div>
 
                 {/* Modal de confirmation de suppression */}
-                {deletingId && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60">
-                    <div className="bg-white p-6 rounded-lg shadow-xl">
-                      <h3 className="text-lg font-medium mb-4">Confirmer la suppression</h3>
-                      <p className="text-gray-600 mb-6">
-                        Êtes-vous sûr de vouloir supprimer cette expérience ?
-                      </p>
-                      <div className="flex gap-3 justify-end">
-                        <button
-                          onClick={() => setDeletingId(null)}
-                          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                        >
-                          Annuler
-                        </button>
-                        <button
-                          onClick={() => deleteExperience(deletingId)}
-                          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                        >
-                          Supprimer
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <DeleteModal
+                  isOpen={!!deletingId}
+                  onClose={() => setDeletingId(null)}
+                  onConfirm={() => deleteExperience(deletingId!)}
+                  message="Êtes-vous sûr de vouloir supprimer cette expérience ?"
+                />
               </Dialog.Panel>
             </Transition.Child>
           </div>

@@ -2,6 +2,7 @@ import { Fragment, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon, PencilIcon, CheckIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useCV } from '../../contexts/CVContext';
+import DeleteModal from '../common/DeleteModal';
 
 interface Formation {
   id: string;
@@ -155,33 +156,33 @@ export default function EditFormationsModal({ isOpen, onClose, formations, onSav
                               value={editingValues?.title || ''}
                               onChange={(e) => setEditingValues(prev => prev ? {...prev, title: e.target.value} : null)}
                               placeholder="Diplôme/Formation"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             />
                             <input
                               type="text"
                               value={editingValues?.school || ''}
                               onChange={(e) => setEditingValues(prev => prev ? {...prev, school: e.target.value} : null)}
                               placeholder="École/Université - Ville"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             />
                             <input
                               type="text"
                               value={editingValues?.period || ''}
                               onChange={(e) => setEditingValues(prev => prev ? {...prev, period: e.target.value} : null)}
                               placeholder="2020 - 2023"
-                              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                              className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                             />
                             <div className="flex gap-2">
                               <button
                                 onClick={saveEditing}
-                                className="flex items-center gap-1 px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+                                className="flex items-center gap-1 px-3 py-1 bg-green-500 btn-custom text-white rounded hover:bg-green-600"
                               >
                                 <CheckIcon className="h-4 w-4" />
                                 Sauvegarder
                               </button>
                               <button
                                 onClick={cancelEditing}
-                                className="flex items-center gap-1 px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                                className="flex items-center gap-1 px-3 py-1 bg-gray-500  text-gray-600 rounded-md hover:bg-gray-600"
                               >
                                 Annuler
                               </button>
@@ -222,37 +223,19 @@ export default function EditFormationsModal({ isOpen, onClose, formations, onSav
                 <div className="mt-6 flex justify-end">
                   <button
                     onClick={handleClose}
-                    className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    className="px-4 py-2 bg-gray-500 text-gray-600 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                   >
                     Fermer
                   </button>
                 </div>
 
                 {/* Modal de confirmation de suppression */}
-                {deletingId && (
-                  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60">
-                    <div className="bg-white p-6 rounded-lg shadow-xl">
-                      <h3 className="text-lg font-medium mb-4">Confirmer la suppression</h3>
-                      <p className="text-gray-600 mb-6">
-                        Êtes-vous sûr de vouloir supprimer cette formation ?
-                      </p>
-                      <div className="flex gap-3 justify-end">
-                        <button
-                          onClick={() => setDeletingId(null)}
-                          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                        >
-                          Annuler
-                        </button>
-                        <button
-                          onClick={() => deleteFormation(deletingId)}
-                          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                        >
-                          Supprimer
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                <DeleteModal
+                  isOpen={!!deletingId}
+                  onClose={() => setDeletingId(null)}
+                  onConfirm={() => deleteFormation(deletingId!)}
+                  message="Êtes-vous sûr de vouloir supprimer cette formation ?"
+                />
               </Dialog.Panel>
             </Transition.Child>
           </div>
