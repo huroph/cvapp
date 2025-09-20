@@ -26,9 +26,7 @@ import CreateCVWizard from '../modals/CreateCVWizard';
 import CVCaptureModal from '../modals/CVCaptureModal';
 import DropdownMenu from '../ui/DropdownMenu';
 import { useCV } from '../../contexts/CVContext';
-import { useProfile } from '../../contexts/ProfileContext';
-import { useAuth } from '../../contexts/AuthContext';
-import { resetDatabaseForUser } from '../../utils/seedData';
+
 
 const navigation = [
   { name: 'Mes CVs', href: '#', icon: DocumentTextIcon, isDropdown: true },
@@ -42,12 +40,10 @@ function classNames(...classes: string[]) {
 const SidebarContent = ({ onItemClick, isHovered: isHoveredProp = true }: { onItemClick?: () => void; isHovered?: boolean }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { cvs, selectedCV, selectCV, createCV, refreshCVs, deleteAllCVs, updateCV, deleteCV } = useCV();
-  const { resetProfile } = useProfile();
-  const { currentUser } = useAuth();
+  const { cvs, selectedCV, selectCV, createCV, updateCV, deleteCV } = useCV();
+
   const [isWizardOpen, setIsWizardOpen] = useState(false);
   const [isCVSectionOpen, setIsCVSectionOpen] = useState(true);
-  const [isResetting, setIsResetting] = useState(false);
   const [isCaptureModalOpen, setIsCaptureModalOpen] = useState(false);
   const [editingCVId, setEditingCVId] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState('');
