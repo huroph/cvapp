@@ -123,16 +123,17 @@ export default function Register() {
     }
   };
 
-  const fillDemoData = () => {
-    setFormData({
-      firstName: 'Alexandre',
-      lastName: 'Dupont',
-      email: 'alexandre.dupont@exemple.com',
-      password: 'demo123',
-      confirmPassword: 'demo123',
-      userType: UserType.CANDIDAT
-    });
-  };
+  // Fonction de remplissage automatique des données de démonstration (désactivée)
+  // const fillDemoData = () => {
+  //   setFormData({
+  //     firstName: 'Alexandre',
+  //     lastName: 'Dupont',
+  //     email: 'alexandre.dupont@exemple.com',
+  //     password: 'demo123',
+  //     confirmPassword: 'demo123',
+  //     userType: UserType.CANDIDAT
+  //   });
+  // };
 
   const displayError = validationError || error;
 

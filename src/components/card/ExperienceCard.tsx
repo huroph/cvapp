@@ -120,9 +120,9 @@ export default function ExperienceCard({}: ExperienceCardProps = {}) {
         }
     }, [selectedCV]);
 
-    const handleSaveExperiences = (newExperiences: Experience[]) => {
-        setExperiences(newExperiences);
-    };
+    // const handleSaveExperiences = (newExperiences: Experience[]) => {
+    //     setExperiences(newExperiences);
+    // };
     
     const handleSaveModalExperiences = (newModalExperiences: ExperienceModal[]) => {
         setModalExperiences(newModalExperiences);

@@ -23,7 +23,7 @@ export default function OnboardingWizard({ isOpen, onComplete }: OnboardingProps
     firstName: userData?.firstName || '',
     lastName: userData?.lastName || '',
     email: currentUser?.email || '',
-    phone: userData?.phone || '',
+    phone: (userData as any)?.phone || '',
     location: '',
     bio: '',
     position: '',

@@ -50,8 +50,8 @@ const CVCaptureModal: React.FC<CVCaptureModalProps> = ({ isOpen, onClose, onData
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
   const [extractedData, setExtractedData] = useState<ExtractedData | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [ocrProgress, setOcrProgress] = useState<number>(0);
-  const [currentStatus, setCurrentStatus] = useState<string>('');
+  const [_ocrProgress, setOcrProgress] = useState<number>(0);
+  const [_currentStatus, setCurrentStatus] = useState<string>('');
   
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);

@@ -1,5 +1,5 @@
 // Service pour gérer les actions spécifiques aux recruteurs
-import { doc, getDoc, setDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import { SharedCVService } from './sharedCVService';
 

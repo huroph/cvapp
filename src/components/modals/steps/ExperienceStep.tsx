@@ -37,11 +37,9 @@ export default function ExperienceStep({ data, onChange, canDelete = false, onDe
     toast.success('Expérience ajoutée');
   };
 
-  const removeExperience = (id: string) => {
-    const experience = data.find(exp => exp.id === id);
-    onChange(data.filter(experience => experience.id !== id));
-    toast.success(`Expérience ${experience?.position || 'expérience'} supprimée`);
-  };
+  // const removeExperience = (id: string) => {
+  //   onChange(data.filter(exp => exp.id !== id));
+  // };
 
   const updateExperience = (id: string, field: keyof Experience, value: string | boolean | string[]) => {
     const experience = data.find(exp => exp.id === id);
@@ -103,7 +101,7 @@ export default function ExperienceStep({ data, onChange, canDelete = false, onDe
       
 
       <div className="">
-        {data.map((experience, index) => (
+        {data.map((experience, _index) => (
           <div key={experience.id} className="">
             <div className="flex justify-end w-full mb-4">
               {canDelete && onDelete && (

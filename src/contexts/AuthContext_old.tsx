@@ -4,7 +4,14 @@ import { doc, getDoc } from 'firebase/firestore';
 import type { ReactNode } from 'react';
 import toast from 'react-hot-toast';
 import { auth, db } from '../lib/firebase';
-import { AuthService, type AuthUser, type LoginData, type RegisterData } from '../services/authService';
+import { AuthService, type LoginData, type RegisterData } from '../services/authService';
+
+// Type local pour AuthUser
+type AuthUser = {
+  uid: string;
+  email: string | null;
+  userType?: string;
+};
 import { UserType } from '../types/user';
 
 interface AuthContextType {

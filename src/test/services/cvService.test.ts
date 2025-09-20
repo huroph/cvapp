@@ -202,10 +202,17 @@ describe('CVService', () => {
         docs: mockCVs.map(cv => ({
           id: cv.id,
           data: () => cv
-        }))
+        })),
+        metadata: {},
+        query: {},
+        size: mockCVs.length,
+        empty: mockCVs.length === 0,
+        forEach: vi.fn(),
+        docChanges: vi.fn(() => []),
+        isEqual: vi.fn(() => false)
       }
       
-      mockGetDocs.mockResolvedValueOnce(mockQuerySnapshot)
+      mockGetDocs.mockResolvedValueOnce(mockQuerySnapshot as any)
 
       const result = await CVService.getAllCVs()
 
@@ -273,10 +280,17 @@ describe('CVService', () => {
         docs: mockCVs.map(cv => ({
           id: cv.id,
           data: () => cv
-        }))
+        })),
+        metadata: {},
+        query: {},
+        size: mockCVs.length,
+        empty: mockCVs.length === 0,
+        forEach: vi.fn(),
+        docChanges: vi.fn(() => []),
+        isEqual: vi.fn(() => false)
       }
       
-      mockGetDocs.mockResolvedValueOnce(mockQuerySnapshot)
+      mockGetDocs.mockResolvedValueOnce(mockQuerySnapshot as any)
 
       const result = await CVService.getCVSummaries()
 
