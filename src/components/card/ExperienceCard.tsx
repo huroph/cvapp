@@ -131,7 +131,7 @@ export default function ExperienceCard({}: ExperienceCardProps = {}) {
 
     return (
         <>
-            <Card>
+            <Card intensity={0.5} >
                 <div className="flex items-center justify-between group">
                     <HeaderCard title="Expérience" color="text-orange-500" />
                     <DropdownMenu

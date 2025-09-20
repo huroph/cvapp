@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { PencilIcon, TrashIcon, UserPlusIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 import { useProfile } from '../contexts/ProfileContext';
 import { useAuth } from '../contexts/AuthContext';
+import Card from '../components/card/Card';
+import Badge from '../components/ui/Badge';
 
 export default function Profile() {
   const { profile, updateProfile, resetProfile } = useProfile();
@@ -106,23 +108,45 @@ export default function Profile() {
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="bg-white rounded-xl shadow-lg p-12 max-w-2xl w-full">
-        <div className="flex flex-col items-center text-center space-y-6 relative">
+    <div className="w-full h-full flex items-center justify-center ">
+      <Card intensity={0.5}  >
+        <div className="flex flex-col space-y-6 p-6 relative ">
           {!isEditing && (
-            <button
-              onClick={handleEdit}
-              className="btn-custom absolute top-0 right-0 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
-              title="Modifier le profil"
-            >
-              <PencilIcon className="h-5 w-5" />
-            </button>
+            <div className="absolute top-4 right-4 flex gap-2">
+              <button
+                onClick={handleEdit}
+                className="btn-custom p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+                title="Modifier le profil"
+              >
+                <PencilIcon className="h-5 w-5" />
+              </button>
+              <button
+                onClick={handleLogout}
+                className="btn-custom p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors"
+                title="Se déconnecter"
+              >
+                <ArrowRightOnRectangleIcon className="h-5 w-5" />
+              </button> 
+            </div>
           )}
 
-          <div className="w-32 h-32 bg-gray-200 rounded-full"></div>
-          
           {isEditing ? (
             <>
+              <div className="flex flex-col items-center mb-6 ">
+                <div className="w-32 h-32 flex items-center justify-center mb-4">
+                  <svg width="128" height="128" viewBox="0 0 368 368" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="profileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#6366F1" />
+                        <stop offset="50%" stopColor="#8B5CF6" />
+                        <stop offset="100%" stopColor="#EC4899" />
+                      </linearGradient>
+                    </defs>
+                    <path d="M184 217C250.849 217 312.835 237.823 363.824 273.337C366.461 275.175 368 278.201 368 281.416V358C368 363.523 363.523 368 358 368H10C4.47716 368 0 363.523 0 358V281.416C0 278.201 1.53884 275.175 4.17635 273.337C55.1654 237.823 117.151 217 184 217ZM368 180.231C368 187.839 359.821 192.693 353 189.322C302.05 164.147 244.677 150 184 150C123.323 150 65.9502 164.147 15 189.322C8.17894 192.693 0 187.839 0 180.231V10C0 4.47715 4.47715 0 10 0H358C363.523 0 368 4.47715 368 10V180.231Z" fill="url(#profileGradient)"/>
+                  </svg>
+                </div>
+              </div>
+
               <div className="w-full space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <input
@@ -193,65 +217,68 @@ export default function Profile() {
                 />
               </div>
               
-              <div className="flex gap-3 justify-center">
-                <button
-                  onClick={handleSave}
-                  className="btn-custom px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors font-medium"
-                >
-                  Sauvegarder
-                </button>
-                <button
-                  onClick={handleCancel}
-                  className="btn-custom px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors font-medium"
-                >
-                  Annuler
-                </button>
-                <button
-                  onClick={handleDelete}
-                  className="btn-custom px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors font-medium flex items-center"
-                >
-                  <TrashIcon className="h-4 w-4 mr-1" />
-                  Supprimer
-                </button>
-                <button
-                  onClick={handleLogout}
-                  className="btn-custom px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors font-medium flex items-center"
-                >
-                  <ArrowRightOnRectangleIcon className="h-4 w-4 mr-1" />
-                  Se déconnecter
-                </button>
+              {/* Footer avec les boutons */}
+              <div className="border-t border-gray-200 pt-6 mt-6">
+                <div className="flex gap-3 justify-center flex-wrap">
+                  <button
+                    onClick={handleSave}
+                    className="btn-custom px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors font-medium"
+                  >
+                    Sauvegarder
+                  </button>
+                  <button
+                    onClick={handleCancel}
+                    className="btn-custom px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-colors font-medium"
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="btn-custom px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors font-medium flex items-center"
+                  >
+                    <TrashIcon className="h-4 w-4 mr-1" />
+                   
+                  </button>
+                 
+                </div>
               </div>
             </>
           ) : (
             <>
-              <button
-                onClick={handleLogout}
-                className="btn-custom absolute top-0 right-12 p-2 text-gray-400 hover:text-orange-600 hover:bg-orange-50 rounded-full transition-colors"
-                title="Se déconnecter"
-              >
-                <ArrowRightOnRectangleIcon className="h-5 w-5" />
-              </button>
-              
-              <h1 className="text-3xl font-bold text-gray-900">
-                {profile?.firstName} {profile?.lastName}
-              </h1>
-              {profile?.position && (
-                <span className="text-lg text-indigo-600 font-medium">
-                  {profile.position}
-                </span>
-              )}
-              <div className="flex flex-col space-y-2 text-gray-600">
-                <span>{profile?.email}</span>
-                <span>{profile?.phone}</span>
-                <span>🇫🇷 {profile?.location}</span>
+              <div className="flex items-end gap-10 text-center">
+                <div className="flex flex-col items-start p-4 rounded-lg">
+                  <div className="w-32 h-32 flex items-center justify-center">
+                    <svg width="128" height="128" viewBox="0 0 368 368" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <linearGradient id="profileGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#6366F1" />
+                          <stop offset="50%" stopColor="#8B5CF6" />
+                          <stop offset="100%" stopColor="#EC4899" />
+                        </linearGradient>
+                      </defs>
+                      <path d="M184 217C250.849 217 312.835 237.823 363.824 273.337C366.461 275.175 368 278.201 368 281.416V358C368 363.523 363.523 368 358 368H10C4.47716 368 0 363.523 0 358V281.416C0 278.201 1.53884 275.175 4.17635 273.337C55.1654 237.823 117.151 217 184 217ZM368 180.231C368 187.839 359.821 192.693 353 189.322C302.05 164.147 244.677 150 184 150C123.323 150 65.9502 164.147 15 189.322C8.17894 192.693 0 187.839 0 180.231V10C0 4.47715 4.47715 0 10 0H358C363.523 0 368 4.47715 368 10V180.231Z" fill="url(#profileGradient)"/>
+                    </svg>
+                  </div>
+
+                  <div className="text-3xl font-bold text-gray-900 w-full rounded-lg my-4 text-left">
+                    {profile?.firstName} {profile?.lastName}
+                  </div>
+                  {profile?.position && (
+                    <Badge variant="gradient" size="md" className="self-start">
+                      {profile.position}
+                    </Badge>
+                  )}
+                </div>
+
+                <div className="flex flex-col items-end  space-y-2 text-sm text-gray-400 p-4 rounded-lg">
+                   <span>{profile?.email}</span>
+                  <span>{profile?.phone}</span>
+                </div>
               </div>
-              <p className="text-gray-700 leading-relaxed max-w-lg">
-                {profile?.bio}
-              </p>
             </>
           )}
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

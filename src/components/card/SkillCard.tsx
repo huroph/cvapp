@@ -74,7 +74,7 @@ export default function SkillCard({}: SkillCardProps = {}) {
 
     return (
         <>
-            <Card>
+            <Card intensity={0.5} >
                 <div className="flex items-center justify-between group">
                     <HeaderCard title="Compétences" color="text-green-500" />
                     <DropdownMenu

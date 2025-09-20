@@ -16,6 +16,7 @@ import { ProfileProvider, useProfile } from "./contexts/ProfileContext";
 import OnboardingWizard from "./components/modals/OnboardingWizard";
 import SharedCVPage from "./pages/SharedCVPage";
 import CVPreviewPage from "./pages/CVPreviewPage";
+import Card3DDemo from "./components/card/Card3DDemo";
 import { UserType } from "./types/user";
 
 import "./App.css";
@@ -99,6 +100,7 @@ function AppContent() {
               <Route path="/" element={<Home />} />
               <Route path="/profil" element={<Profile />} />
               <Route path="/cv-preview" element={<CVPreviewPage />} />
+              <Route path="/card-demo" element={<Card3DDemo />} />
             </Routes>
           </main>
         </div>

@@ -77,7 +77,7 @@ export default function FormationCard({}: FormationCardProps = {}) {
 
     return (
         <>
-            <Card>
+            <Card intensity={0.5} >
                 <div className="flex items-center justify-between group">
                     <HeaderCard title="Formation" color="text-purple-500" />
                     <DropdownMenu
