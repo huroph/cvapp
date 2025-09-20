@@ -136,7 +136,7 @@ export interface CardProps {
 export interface ExperienceCardProps {}
 export interface FormationCardProps {}
 export interface SkillCardProps {}
-export interface ProfilCardProps {}
+
 
 // Props pour le dropdown CV
 export interface CVDropdownProps {
