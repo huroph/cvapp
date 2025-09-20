@@ -189,9 +189,9 @@ export default function CVPreviewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Barre de preview avec bouton fermer */}
-      <div className="sticky top-0 z-20 bg-indigo-600 text-white p-3 shadow-lg">
+    <div className="h-screen bg-gray-50 flex flex-col">
+      {/* Header fixe en haut */}
+      <div className="flex-shrink-0 bg-indigo-600 text-white p-3 shadow-lg z-20">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-sm font-medium">👁️ Preview CV</span>
@@ -236,6 +236,9 @@ export default function CVPreviewPage() {
           </div>
         </div>
       </div>
+
+      {/* Contenu scrollable qui prend le reste de l'espace */}
+      <div className="flex-1 overflow-y-auto">
 
       {/* Zone d'affichage du lien généré */}
       <AnimatePresence>
@@ -567,6 +570,7 @@ export default function CVPreviewPage() {
             
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

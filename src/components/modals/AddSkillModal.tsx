@@ -106,7 +106,7 @@ export default function AddSkillModal({ isOpen, onClose, skills, onSave }: AddSk
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full max-w-md transform rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <div className="flex justify-between items-center mb-6">
                   <Dialog.Title className="text-lg font-medium leading-6 text-gray-900">
                     Ajouter une compétence
@@ -129,7 +129,7 @@ export default function AddSkillModal({ isOpen, onClose, skills, onSave }: AddSk
                       value={newSkill.name}
                       onChange={(e) => setNewSkill(prev => ({ ...prev, name: e.target.value }))}
                       placeholder="Ex: React, Photoshop, SEO..."
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                      className="w-full px-3 py-2 border border-gray-300 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                     />
                   </div>
 
@@ -166,12 +166,15 @@ export default function AddSkillModal({ isOpen, onClose, skills, onSave }: AddSk
                       placeholder="Sélectionner un niveau"
                     />
                   </div>
+
+                  {/* Petit espace pour les dropdowns */}
+               
                 </div>
 
                 <div className="mt-6 flex justify-end gap-3">
                   <button
                     onClick={handleClose}
-                    className="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                    className="px-4 py-2 bg-gray-500 text-gray-600 rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500"
                     disabled={isLoading}
                   >
                     Annuler
@@ -179,7 +182,7 @@ export default function AddSkillModal({ isOpen, onClose, skills, onSave }: AddSk
                   <button
                     onClick={addSkill}
                     disabled={!isFormValid || isLoading}
-                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white btn-custom rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? (
                       <>
