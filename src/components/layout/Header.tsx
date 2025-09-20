@@ -38,6 +38,7 @@ export default function Header({ cvTitle, viewCount, authenticatedViewCount }: H
             <div className="text-md font-semibold text-gray-900 truncate">
               {cvTitle}
             </div>
+           
             {viewCount !== undefined && (
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1 px-2 py-1 bg-gray-100 rounded-full text-xs">
